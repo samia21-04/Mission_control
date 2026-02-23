@@ -25,6 +25,22 @@ class CounterWidget extends StatefulWidget {
 class _CounterWidgetState extends State<CounterWidget> {
   // set counter value
   int _counter = 0;
+  
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  Color _visualCountdownStatus(int counter){
+    if (counter == 0){
+      return Colors.red;
+    } else if (counter > 0 && counter <= 50){
+      return Colors.orange;
+    } else {
+      return Colors.green;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +60,16 @@ class _CounterWidgetState extends State<CounterWidget> {
               ),
             ),
           ),
+          ElevatedButton(
+            onPressed: _incrementCounter,
+            child: const Text('Ignite'),
+             ), //Elevated Button (Ignite)
+             const SizedBox(height: 20),
+
+            ColorFiltered(
+              colorFilter: ColorFilter.mode(_visualCountdownStatus(_counter), 
+              BlendMode.srcIn),
+             ), //ColorFiltered
           Slider(
             min: 0,
             max: 100,
