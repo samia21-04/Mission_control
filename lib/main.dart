@@ -25,6 +25,19 @@ class CounterWidget extends StatefulWidget {
 class _CounterWidgetState extends State<CounterWidget> {
   // set counter value
   int _counter = 0;
+  void _decrement() {
+  setState(() {
+    if (_counter > 0) {
+      _counter -= 1;
+    }
+  });
+}
+
+void _reset() {
+  setState(() {
+    _counter = 0;
+  });
+}
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +69,18 @@ class _CounterWidgetState extends State<CounterWidget> {
             activeColor: Colors.blue,
             inactiveColor: Colors.red,
           ),
+          const SizedBox(height: 12),
+
+ElevatedButton(
+  onPressed: _decrement,
+  child: const Text('Decrement'),
+),
+const SizedBox(height: 10),
+
+OutlinedButton(
+  onPressed: _reset,
+  child: const Text('Reset'),
+),
         ],
       ),
     );
